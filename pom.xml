@@ -1,104 +1,154 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>com.github.xlongshu.maven</groupId>
-        <artifactId>javaweb-starter</artifactId>
-        <version>1.0.1</version>
-    </parent>
-
-    <groupId>softserve</groupId>
-    <artifactId>softserve</artifactId>
+    <groupId>com.softserve</groupId>
+    <artifactId>Restaurant</artifactId>
+    <version>0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-    <version>1.0-SNAPSHOT</version>
-    <name>softserve Maven Webapp</name>
+
+    <name>Restaurant App</name>
+    <!-- FIXME change it to the project's website -->
+    <url>http://www.example.com</url>
 
     <properties>
-        <java.version>1.7</java.version>
-        <skipTests>true</skipTests>
 
-        <!-- servlet/jsp/EL (3.0/2.2/2.2),(3.1/2.3/3.0) -->
-        <javaee-api.version>7.0</javaee-api.version>
-        <servlet-api.version>3.1.0</servlet-api.version>
-        <jsp-api.version>2.3.1</jsp-api.version>
-        <el-api.version>3.0.0</el-api.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
 
-        <server.port>8080</server.port>
-        <log.level>DEBUG</log.level>
-        <log.path>/data/logs/</log.path>
+        <logback.version>1.2.3</logback.version>
+        <mockito.version>2.28.2</mockito.version>
+        <testNg.version> 6.14.3</testNg.version>
+        <hikariCP.version>3.3.1</hikariCP.version>
+        <mySQLConnector.version>8.0.13</mySQLConnector.version>
+        <servlet.version>4.0.1</servlet.version>
+        <jsp.version>2.3.1</jsp.version>
+        <jstl.version>1.2.1</jstl.version>
+        <junit.version>4.12</junit.version>
+
     </properties>
 
+
     <dependencies>
-        <!-- Logger Impl -->
-        <!-- <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testNg.version}</version>
+            <scope>test</scope>
+        </dependency>
+
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-        </dependency> -->
-        <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
-        <dependency>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.8.1</version>
+            <version>${logback.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>${hikariCP.version}</version>
         </dependency>
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.16</version>
+            <version>${mySQLConnector.version}</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>4.0.0-b01</version>
+            <version>${servlet.version}</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+            <version>${jsp.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/javax.servlet.jsp.jstl/javax.servlet.jsp.jstl-api -->
+        <dependency>
+            <groupId>javax.servlet.jsp.jstl</groupId>
+            <artifactId>javax.servlet.jsp.jstl-api</artifactId>
+            <version>${jstl.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.glassfish.web/javax.servlet.jsp.jstl -->
+        <dependency>
             <groupId>org.glassfish.web</groupId>
             <artifactId>javax.servlet.jsp.jstl</artifactId>
-            <version>1.2.1</version>
+            <version>${jstl.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.3m</version>
+        </dependency>
+
     </dependencies>
 
+
     <build>
-        <finalName>${project.artifactId}</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.eclipse.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-                <version>${jetty.version}</version>
-
-                <configuration>
-                    <stopKey>stop</stopKey>
-                    <stopPort>8888</stopPort>
-                    <scanIntervalSeconds>8</scanIntervalSeconds>
-                    <webAppSourceDirectory>${webAppSourceDir}</webAppSourceDirectory>
-                    <war>${project.basedir}/target/${project.artifactId}</war>
-
-                    <webAppConfig>
-                        <contextPath>/</contextPath>
-                        <defaultsDescriptor>${webAppSourceDir}/WEB-INF/webdefault.xml</defaultsDescriptor>
-                    </webAppConfig>
-
-                    <httpConnector>
-                        <port>${server.port}</port>
-                    </httpConnector>
-                </configuration>
-            </plugin>
-
-
-        </plugins>
+        <finalName>Restaurant</finalName>
+        <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+            <plugins>
+                <plugin>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>3.1.0</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.0.2</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.0</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.22.1</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>3.2.2</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>2.5.2</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>2.8.2</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
-
 </project>
