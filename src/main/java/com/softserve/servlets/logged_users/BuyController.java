@@ -5,12 +5,8 @@ import com.softserve.entities.Dish;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/user/buy")
@@ -22,18 +18,11 @@ public class BuyController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Dish> dishes = new ArrayList<>();
-        List<Dish> drinks = new ArrayList<>();
-        Cookie ck[]=req.getCookies();
-        for(Cookie i: ck){
-            if(i.getValue().equals("id_dish"))
-            dishes.add(DishDAOimpl.getById(Integer.parseInt(i.getValue())));
-            else
-                drinks.add(DishDAOimpl.getById(Integer.parseInt(i.getValue())));
-        //    System.out.println(DishDAOimpl.getById(Integer.parseInt(i.getValue())));
-        }
-        req.getServletContext().setAttribute("dishes", dishes);
-        req.getServletContext().setAttribute("drinks", drinks);
+        HttpSession session = req.getSession();
+        List<Dish> items = (List<Dish>) session.getAttribute("bin_dishes");
+        items.remove(DishDAOimpl.getById(Integer.parseInt(req.getParameter("id"))));
+
+        System.out.print(items.size());
         req.getRequestDispatcher("/views/logged_users/buy.jsp").forward(req, resp);
     }
 }

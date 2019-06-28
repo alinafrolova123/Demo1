@@ -34,7 +34,7 @@
                         <td class="col-sm-5">${dish.description}</td>
                         <td class="col-sm-2">${dish.price}</td>
                         <td class="col-sm-2">
-                            <button class="btn click-btn button round-button" onclick="addToBasket(dish.id_dish)" href="/user/menu?id=${dish.id_dish}"><i class="ti-plus"></i>
+                            <button class="btn click-btn button round-button" onclick="addToBasket(${dish.id_dish})"><i class="ti-plus"></i>
                             </button>
                         </td>
                     </tr>
@@ -73,4 +73,5 @@
 </section>
 </body>
 <%@include file="/views/components/footer.jsp" %>
+<script src="${pageContext.request.contextPath}/static/js/addToBasket.js"></script>
 </html>

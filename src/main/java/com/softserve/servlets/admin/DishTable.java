@@ -18,6 +18,7 @@ import java.util.List;
 
 @WebServlet("/admin/dishes")
 public class DishTable extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Dish> dishes = DishDAOimpl.getItems();
@@ -27,7 +28,6 @@ public class DishTable extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         String name = req.getParameter("name");
         String description = req.getParameter("description");
         String price = req.getParameter("price");

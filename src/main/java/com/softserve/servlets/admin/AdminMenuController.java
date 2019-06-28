@@ -16,8 +16,9 @@ import java.util.List;
 public class AdminMenuController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Dish> dishes = DishDAOimpl.getDishes();
-        List<Dish> drinks = DishDAOimpl.getDrinks();
+        DishDAOimpl dishDAOimpl = new DishDAOimpl();
+        List<Dish> dishes = dishDAOimpl.getDishes();
+        List<Dish> drinks = dishDAOimpl.getDrinks();
         req.getServletContext().setAttribute("dishes", dishes);
         req.getServletContext().setAttribute("drinks", drinks);
 

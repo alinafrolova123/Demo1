@@ -46,14 +46,14 @@ public class DishDAOimpl {
     }
 
 
-    public static void getAllDishes(int id_dish) {
+    public void getAllDishes(int id_dish) {
         ArrayList<Dish> dishes = new ArrayList<>();
         dishes.add(getById(id_dish));
     }
 
-    public static List<Dish> getDishes() {
+    public List<Dish> getDishes() {
         List<Dish> dishes = new ArrayList<>();
-        String sql = "SELECT * FROM restaurant.dishes WHERE type=true;";
+        String sql = "SELECT * FROM restaurant.dishes WHERE type=1;";
         ResultSet resultSet;
         Dish dish;
         Connection con=null;
@@ -63,6 +63,7 @@ public class DishDAOimpl {
             resultSet = ps.executeQuery(sql);
             while (resultSet.next()) {
                 dish = new Dish();
+                dish.setId_dish(resultSet.getInt("id_dish"));
                 dish.setName(resultSet.getString("name"));
                 dish.setDescription(resultSet.getString("description"));
                 dish.setPrice(resultSet.getString("price"));
@@ -83,9 +84,9 @@ public class DishDAOimpl {
         return dishes;
     }
 
-    public static List<Dish> getDrinks() {
+    public List<Dish> getDrinks() {
         List<Dish> drinks = new ArrayList<>();
-        String sql = "SELECT * FROM restaurant.dishes WHERE type=false;";
+        String sql = "SELECT * FROM restaurant.dishes WHERE type=0;";
         ResultSet resultSet;
         Dish dish;
         Connection con=null;
@@ -95,6 +96,7 @@ public class DishDAOimpl {
             resultSet = ps.executeQuery(sql);
             while (resultSet.next()) {
                 dish = new Dish();
+                dish.setId_dish(resultSet.getInt("id_dish"));
                 dish.setName(resultSet.getString("name"));
                 dish.setDescription(resultSet.getString("description"));
                 dish.setPrice(resultSet.getString("price"));
@@ -152,7 +154,7 @@ public class DishDAOimpl {
 
     public static Dish getById(int id_dish) {
         Connection con =null;
-        String sql = "SELECT name, description, price FROM dishes WHERE id_dish = ?";
+        String sql = "SELECT name, description, price, type FROM dishes WHERE id_dish = ?";
         try {
 
             con = DataSource.getConnection();
@@ -161,9 +163,11 @@ public class DishDAOimpl {
             ResultSet resultSet = ps.executeQuery();
             if (resultSet.first()) {
                 Dish dish = new Dish();
+                dish.setId_dish(id_dish);
                 dish.setName(resultSet.getString(1));
                 dish.setDescription(resultSet.getString(2));
                 dish.setPrice(resultSet.getString(3));
+                dish.setType(resultSet.getInt(4));
                 return dish;
             }
 

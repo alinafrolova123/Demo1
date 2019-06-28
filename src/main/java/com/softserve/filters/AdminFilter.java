@@ -1,11 +1,8 @@
 package com.softserve.filters;
 
-import com.softserve.dao.impl.UserDAOimpl;
-import com.softserve.entities.Account;
 import com.softserve.util.security.AuthManager;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
