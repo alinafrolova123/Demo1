@@ -1,7 +1,9 @@
 package com.softserve.entities;
 
+import java.util.Objects;
+
 public class Dish {
-    private int id_dish;
+    private int idDish;
     private String name;
     private String description;
     private String price;
@@ -11,13 +13,14 @@ public class Dish {
     public Dish() {
     }
 
-    public Dish(int id_dish, String name, String description, String price, int type) {
-        this.id_dish = id_dish;
+    public Dish(int idDish, String name, String description, String price, int type) {
+        this.idDish = idDish;
         this.name = name;
         this.description = description;
         this.price = price;
         this.type = type;
     }
+
     public Dish(String name, String description, String price, int type) {
         this.name = name;
         this.description = description;
@@ -25,12 +28,12 @@ public class Dish {
         this.type = type;
     }
 
-    public int getId_dish() {
-        return id_dish;
+    public int getIdDish() {
+        return idDish;
     }
 
-    public void setId_dish(int id_dish) {
-        this.id_dish = id_dish;
+    public void setIdDish(int idDish) {
+        this.idDish = idDish;
     }
 
     public String getName() {
@@ -65,4 +68,36 @@ public class Dish {
     public void setType(int type) {
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return "Dish{" +
+                "idDish=" + idDish +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", price='" + price + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Dish)) return false;
+        Dish dish = (Dish) o;
+        return idDish == dish.idDish &&
+                type == dish.type &&
+                Objects.equals(name, dish.name) &&
+                Objects.equals(description, dish.description) &&
+                Objects.equals(price, dish.price);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idDish, name, description, price, type);
+    }
+
+    public static int removeFirstChar(String str) {
+        return Integer.parseInt(str.substring(1));
+    }
 }
+

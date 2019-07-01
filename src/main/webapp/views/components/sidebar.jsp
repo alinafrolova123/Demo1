@@ -1,4 +1,4 @@
-<nav id_user="sidebar" class="active">
+<nav idUser="sidebar" class="active">
     <div class="sidebar-header">
 
 

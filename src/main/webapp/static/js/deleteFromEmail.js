@@ -1,7 +1,7 @@
-function deleteFromBasket(id) {
+function deleteFromEmail(id) {
     $("#item_"+id).remove();
     $.ajax({
-        url: "/user/buy?id=" + id,
+        url: "/admin/emails?id=" + id,
         type: "delete"
     })
 }

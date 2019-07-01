@@ -28,13 +28,12 @@ public class UserServiceImpl implements UserService {
         userDAO.edit(user);
     }
 
-
     @Override
     public void delete(int id) {
         if (id <= 0) {
             throw new IllegalArgumentException("User cannot be null");
         }
-        userDAO.delete();
+        userDAO.delete(id);
     }
 
     @Override

@@ -2,7 +2,6 @@ package com.softserve.dao.impl;
 
 import com.softserve.dao.UserDAO;
 import com.softserve.db.DataSource;
-import com.softserve.entities.Account;
 import com.softserve.entities.User;
 
 import java.sql.Connection;
@@ -15,7 +14,7 @@ public class UserDAOimpl implements UserDAO {
 
     public boolean add(User user) {
 
-        String sql = "INSERT INTO user(name, surname, phone_number, login, password, role) " +
+        String sql = "INSERT INTO restaurant.user(name, surname, phone_number, login, password, role) " +
                 "VALUES(?,?,?,?,?,?)";
         try {
 
@@ -49,7 +48,7 @@ public class UserDAOimpl implements UserDAO {
             resultSet = ps.executeQuery(sql);
             while (resultSet.next()) {
                 user = new User();
-                user.setId_user(resultSet.getInt("id_user"));
+                user.setIdUser(resultSet.getInt("idUser"));
                 user.setName(resultSet.getString("name"));
                 user.setSurname(resultSet.getString("surname"));
                 user.setPhone_number(resultSet.getString("phone_number"));
@@ -64,31 +63,8 @@ public class UserDAOimpl implements UserDAO {
         return users;
     }
 
-    public static ArrayList<Account> getAccounts() {
-        ArrayList<Account> accounts = new ArrayList<>();
-        String sql = "SELECT login, password FROM user";
-        ResultSet resultSet;
-        Account account;
-        Connection con;
-        try {
-            con = DataSource.getConnection();
-            PreparedStatement ps = con.prepareStatement(sql);
-            resultSet = ps.executeQuery(sql);
-            while (resultSet.next()) {
-                account = new Account();
-                account.setUsername(resultSet.getString("login"));
-                account.setPassword(resultSet.getString("password"));
-                //  user.setRole("user");
-                accounts.add(account);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return accounts;
-    }
-
     public void edit(User user) {
-        String sql = "UPDATE user SET name = ? AND surname = ? AND phone_number = ? AND login = ? AND password = ? where id_user = ?";
+        String sql = "UPDATE restaurant.user SET name = ?, surname = ?, phone_number = ?, login = ?, password = ? where idUser = ?";
         Connection con = null;
         try {
 
@@ -100,7 +76,7 @@ public class UserDAOimpl implements UserDAO {
             ps.setString(3, user.getPhone_number());
             ps.setString(4, user.getLogin());
             ps.setString(5, user.getPassword());
-            ps.setInt(6,user.getId_user());
+            ps.setInt(6,user.getIdUser());
 
             ps.executeUpdate();
 
@@ -118,12 +94,26 @@ public class UserDAOimpl implements UserDAO {
         }
     }
 
-    public void delete() {
+
+    public boolean delete(int id) {
+        String sql = "DELETE FROM restaurant.user WHERE idUser =" + id;
+        Connection con = null;
+        try {
+            con = DataSource.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            return ps.executeUpdate(sql)>0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
+
 
     public User getByLogin(String login) {
         Connection con = null;
-        String sql = "SELECT id_user, name, surname, phone_number, login, password, role FROM user WHERE login = ?";
+        String sql = "SELECT idUser, name, surname, phone_number, login, password, role FROM restaurant.user WHERE login = ?";
         try {
 
             con = DataSource.getConnection();
@@ -132,7 +122,7 @@ public class UserDAOimpl implements UserDAO {
             ResultSet resultSet = ps.executeQuery();
             if(resultSet.first()){
                 User user = new User();
-                user.setId_user(resultSet.getInt(1));
+                user.setIdUser(resultSet.getInt(1));
                 user.setName(resultSet.getString(2));
                 user.setSurname(resultSet.getString(3));
                 user.setPhone_number(resultSet.getString(4));

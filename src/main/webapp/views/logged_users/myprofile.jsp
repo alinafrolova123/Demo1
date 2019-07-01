@@ -31,7 +31,7 @@
                             <div class="tab-pane fade" id="contact">
                                 <p></p>
                                 <form role="form" method="post" action="/user/myprofile">
-                                    <input type="hidden" value="${requestScope.user.id_user}" name="id" />
+                                    <input type="hidden" value="${Auth.user.idUser}" name="id" />
                                     <div class="form-group">
                                         <label>Your Name:</label>
                                         <input name="name" class="form-control rounded" value="${Auth.user.name}" />

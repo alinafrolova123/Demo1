@@ -25,7 +25,7 @@
                     <div class="container box_1620">
                         <a class="navbar-brand logo" href="/user/home"><img src="/static/img/2Restoran1.png" alt=""/></a>
 
-                        <div class="collapse navbar-collapse offset" id_user="navbarSupportedContent">
+                        <div class="collapse navbar-collapse offset" idUser="navbarSupportedContent">
                             <ul class="nav navbar-nav menu_nav justify-content-end">
                                 <li class="nav-item active"><a class="nav-link" href="/user/home">Home</a></li>
                                 <li class="nav-item"><a class="nav-link" href="/user/about">About</a></li>

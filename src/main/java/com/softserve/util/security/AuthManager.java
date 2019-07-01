@@ -1,12 +1,10 @@
 package com.softserve.util.security;
 
-import com.softserve.dao.impl.DishDAOimpl;
 import com.softserve.entities.Dish;
 import com.softserve.entities.User;
 import com.softserve.services.UserService;
 import com.softserve.services.UserServiceImpl;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -57,10 +55,11 @@ public class AuthManager {
         }
         this.setUser(user);
         this.session.setAttribute("auntificatedUser", user);
-        DishDAOimpl dishDAOimpl = new DishDAOimpl();
-      //  List<Dish> dishes = dishDAOimpl.getDishes();
         List <Dish> items = new ArrayList<>();
+        int bill = 0;
         this.session.setAttribute("bin_dishes", items);
+
+
     }
 
     public void logout() {
@@ -78,27 +77,6 @@ public class AuthManager {
 
     public boolean guest() {
         return this.user == null;
-    }
-
-
-    public void setSecurityManager(SecurityManager securityManager) {
-        this.securityManager = securityManager;
-    }
-
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
-
-    public void setSession(HttpSession session) {
-        this.session = session;
-    }
-
-    public void setHttpServletRequest(HttpServletRequest httpServletRequest) {
-        this.httpServletRequest = httpServletRequest;
-    }
-
-    public void setHttpServletResponse(HttpServletResponse httpServletResponse) {
-        this.httpServletResponse = httpServletResponse;
     }
 
 }

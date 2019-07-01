@@ -34,7 +34,7 @@
                         <td class="col-sm-5">${dish.description}</td>
                         <td class="col-sm-2">${dish.price}</td>
                         <td class="col-sm-2">
-                            <button class="btn click-btn button round-button" href="/user/basket?id=${dish.id_dish}"><i class="ti-plus"></i>
+                            <button class="btn click-btn button round-button" href="/user/basket?id=${dish.idDish}"><i class="ti-plus"></i>
                             </button>
                         </td>
                     </tr>
@@ -61,7 +61,7 @@
                         <td class="col-sm-5">${drink.description}</td>
                         <td class="col-sm-2">${drink.price}</td>
                         <td class="col-sm-2">
-                            <button class="btn click-btn button round-button" href="/user/basket?id=${drink.id_dish}"><i class="ti-plus"></i>
+                            <button class="btn click-btn button round-button" href="/user/basket?id=${drink.idDish}"><i class="ti-plus"></i>
                             </button>
                         </td>
                     </tr>

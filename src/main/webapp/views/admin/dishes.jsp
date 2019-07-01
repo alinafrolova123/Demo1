@@ -68,15 +68,60 @@
                     <tbody class="table-dark">
 
                     <c:forEach var="dish" items="${dishes}">
-                        <tr class="d-flex">
-                            <td class="col-sm-2">${dish.id_dish}</td>
+                        <tr class="d-flex" id="item_${dish.idDish}">
+                            <td class="col-sm-2">${dish.idDish}</td>
                             <td class="col-sm-3">${dish.name}</td>
                             <td class="col-sm-3">${dish.description}</td>
                             <td class="col-sm-2">${dish.price}</td>
-                                <%--<button type="submit" class="btn btn-primary">Add</button>--%>
-                            <td class="col-sm-2"><a class="btn btn-primary" href="/delete?id=${dish.id_dish}">Delete</a>
-                                <a class="btn btn-primary" href="/update?id=${dish.id_dish}">Update</a></td>
+                            <td class="col-sm-1">
+                                <button class="btn btn-primary" type="submit" onclick="deleteFromMenu(${dish.idDish})">
+                                    Delete
+                                </button>
+                            </td>
+                            <td class="col-sm-1">
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#myModal_${dish.idDish}" type="submit">Edit
+                                </button>
+                            </td>
                         </tr>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal_${dish.idDish}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Edit dish</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form role="form" method="post" action="/admin/edit/dish">
+                                            <input type="hidden" value="${dish.idDish}" name="idDish" />
+                                            <div class="form-group">
+                                                <label>Name:</label>
+                                                <input name="dishName" class="form-control rounded" value="${dish.name}"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Description:</label>
+                                                <input name="dishDescription" class="form-control rounded"
+                                                       value="${dish.description}"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Price:</label>
+                                                <input name="dishPrice" class="form-control rounded" value="${dish.price}"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-success">Update</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </c:forEach>
                     </tbody>
                 </table>
@@ -86,8 +131,11 @@
 </section>
 
 
-</body>
 
+
+
+</body>
+<script src="${pageContext.request.contextPath}/static/js/deleteFromMenu.js"></script>
 <%@include file="/views/components/footer.jsp" %>
 
 </html>

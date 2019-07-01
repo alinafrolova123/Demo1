@@ -16,7 +16,7 @@
                 <p>Leave your email. We`ll send you our new offers.</p>
 
                 <div class="form-wrap">
-                    <form target="_blank" action="" method="">
+                    <form target="_blank" action="/admin/emails" method="post">
                         <div class="input-group">
                             <input type="email" class="form-control" name="EMAIL" placeholder="Your Email Address"
                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address '"/>

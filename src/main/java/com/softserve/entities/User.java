@@ -1,7 +1,9 @@
 package com.softserve.entities;
 
+import java.util.Objects;
+
 public class User {
-    private int id_user;
+    private int idUser;
     private String name;
     private String surname;
     private String phone_number;
@@ -21,7 +23,7 @@ public class User {
     }
 
     public User(int id_user, String name, String surname, String phone_number, String login, String password, String role) {
-        this.id_user = id_user;
+        this.idUser = id_user;
         this.name = name;
         this.surname = surname;
         this.phone_number = phone_number;
@@ -39,12 +41,12 @@ public class User {
         this.role = role;
     }
 
-    public int getId_user() {
-        return id_user;
+    public int getIdUser() {
+        return idUser;
     }
 
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
     public String getName() {
@@ -97,7 +99,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id_user=" + id_user +
+                "idUser=" + idUser +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", phone_number='" + phone_number + '\'' +
@@ -105,5 +107,24 @@ public class User {
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return idUser == user.idUser &&
+                Objects.equals(name, user.name) &&
+                Objects.equals(surname, user.surname) &&
+                Objects.equals(phone_number, user.phone_number) &&
+                Objects.equals(login, user.login) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(role, user.role);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idUser, name, surname, phone_number, login, password, role);
     }
 }

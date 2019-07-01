@@ -26,7 +26,7 @@
                     <img src="/static/img/2Restoran1.png" alt=""/>
                 </a>
 
-                <div class="collapse navbar-collapse offset" id_user="navbarSupportedContent">
+                <div class="collapse navbar-collapse offset" idUser="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav justify-content-end">
                         <li class="nav-item active">
                             <a class="nav-link" href="${pageContext.request.contextPath}/home">

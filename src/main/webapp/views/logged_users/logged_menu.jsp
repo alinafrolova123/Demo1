@@ -8,7 +8,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 
-<% List<Dish> dishes = (List<Dish>) request.getAttribute("dishes");%>
+<% List<Dish> dishes1 = (List<Dish>) request.getAttribute("dishes");%>
 <% List<Dish> drinks = (List<Dish>) request.getAttribute("drinks");%>
 
 <body>
@@ -34,7 +34,7 @@
                         <td class="col-sm-5">${dish.description}</td>
                         <td class="col-sm-2">${dish.price}</td>
                         <td class="col-sm-2">
-                            <button class="btn click-btn button round-button" onclick="addToBasket(${dish.id_dish})"><i class="ti-plus"></i>
+                            <button class="btn click-btn button round-button" onclick="addToBasket(${dish.idDish})"><i class="ti-plus"></i>
                             </button>
                         </td>
                     </tr>
@@ -61,7 +61,7 @@
                         <td class="col-sm-5">${drink.description}</td>
                         <td class="col-sm-2">${drink.price}</td>
                         <td class="col-sm-2">
-                            <button class="btn click-btn button round-button" onclick="addToBasket(drink.id_dish)" href="/user/menu?id=${drink.id_dish}"><i class="ti-plus"></i>
+                            <button class="btn click-btn button round-button" onclick="addToBasket(${drink.idDish})"><i class="ti-plus"></i>
                             </button>
                         </td>
                     </tr>

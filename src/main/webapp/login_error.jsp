@@ -30,7 +30,7 @@
                         <img src="/static/img/2Restoran1.png" alt=""/>
                     </a>
 
-                    <div class="collapse navbar-collapse offset" id_user="navbarSupportedContent">
+                    <div class="collapse navbar-collapse offset" idUser="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav justify-content-end">
                             <li class="nav-item active">
                                 <a class="nav-link" href="${pageContext.request.contextPath}/WEB-INF/index.jsp">
@@ -140,9 +140,9 @@
                     <h4>Newsletter</h4>
                     <p>Leave your email. We`ll send you our new offers.</p>
 
-                    <div class="form-wrap" id_user="mc_embed_signup">
+                    <div class="form-wrap" idUser="mc_embed_signup">
                         <form target="_blank"
-                              action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id_user=92a4423d01"
+                              action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;idUser=92a4423d01"
                               method="get">
                             <div class="input-group">
                                 <input type="email" class="form-control" name="EMAIL" placeholder="Your Email Address"

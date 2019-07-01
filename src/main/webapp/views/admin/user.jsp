@@ -21,14 +21,18 @@
                     <tbody class="table-dark">
 
                     <c:forEach var="user" items="${users}">
-                        <tr class="d-flex">
-                            <td class="col-sm-3">${user.id_user}</td>
+                        <tr class="d-flex" id="us_${user.idUser}">
+                            <td class="col-sm-3">${user.idUser}</td>
                             <td class="col-sm-3">${user.name}</td>
                             <td class="col-sm-2">${user.surname}</td>
                             <td class="col-sm-2">${user.phone_number}</td>
-                                <%--<button type="submit" class="btn btn-primary">Add</button>--%>
-                            <td class="col-sm-2"><a class="btn btn-primary" href="/delete?id=${user.id_user}">Delete</a>
-                                <a class="btn btn-primary" href="/update?id=${user.id_user}">Update</a></td>
+                            <td class="col-sm-1">
+                                <button class="btn btn-primary" type="submit" onclick="deleteFromMenu(${user.idUser})">Delete
+                                </button>
+                            </td>
+                            <td class="col-sm-1">
+                                <button class="btn btn-primary" type="submit" onclick="">Edit</button>
+                            </td>
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -40,6 +44,6 @@
 
 </body>
 
-
+<script src="${pageContext.request.contextPath}/static/js/deleteFromUsers.js"></script>
 <%@include file="/views/components/footer.jsp" %>
 </html>
