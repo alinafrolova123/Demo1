@@ -37,7 +37,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <input type="tel" class="form-control" name = "phone_number" placeholder="Phone Number"
+                                            <input type="tel" class="form-control <c:out value="${not empty error1 ? 'is-invalid':''}"></c:out>" name = "phone_number" placeholder="Phone Number"
                                                    pattern="^\d{4}-\d{3}-\d{4}$" required="required"/>
                                             <div class="input-group-append">
                                                 <span class="input-group-text">
@@ -68,7 +68,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="form-group form-group-position">
                                         <button class="button border-0" type="submit">Register</button>
                                     </div>

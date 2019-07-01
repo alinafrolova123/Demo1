@@ -13,12 +13,12 @@ import java.util.ArrayList;
 public class UserDAOimpl implements UserDAO {
 
     public boolean add(User user) {
-
+        Connection con = null;
         String sql = "INSERT INTO restaurant.user(name, surname, phone_number, login, password, role) " +
                 "VALUES(?,?,?,?,?,?)";
         try {
 
-            Connection con = DataSource.getConnection();
+            con = DataSource.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
 
             ps.setString(1, user.getName());
@@ -32,6 +32,14 @@ public class UserDAOimpl implements UserDAO {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return false;
     }
@@ -41,7 +49,7 @@ public class UserDAOimpl implements UserDAO {
         String sql = "SELECT * FROM restaurant.user;";
         ResultSet resultSet;
         User user;
-        Connection con;
+        Connection con = null;
         try {
             con = DataSource.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
@@ -59,6 +67,14 @@ public class UserDAOimpl implements UserDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return users;
     }
@@ -76,19 +92,18 @@ public class UserDAOimpl implements UserDAO {
             ps.setString(3, user.getPhone_number());
             ps.setString(4, user.getLogin());
             ps.setString(5, user.getPassword());
-            ps.setInt(6,user.getIdUser());
+            ps.setInt(6, user.getIdUser());
 
             ps.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-        finally {
-            try{
-                if(con != null){
+        } finally {
+            try {
+                if (con != null) {
                     con.close();
                 }
-            }catch (SQLException e){
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
@@ -102,7 +117,7 @@ public class UserDAOimpl implements UserDAO {
             con = DataSource.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
 
-            return ps.executeUpdate(sql)>0;
+            return ps.executeUpdate(sql) > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -113,14 +128,14 @@ public class UserDAOimpl implements UserDAO {
 
     public User getByLogin(String login) {
         Connection con = null;
-        String sql = "SELECT idUser, name, surname, phone_number, login, password, role FROM restaurant.user WHERE login = ?";
+        String sql = "SELECT * FROM restaurant.user WHERE login = ?";
         try {
 
             con = DataSource.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, login);
             ResultSet resultSet = ps.executeQuery();
-            if(resultSet.first()){
+            if (resultSet.first()) {
                 User user = new User();
                 user.setIdUser(resultSet.getInt(1));
                 user.setName(resultSet.getString(2));
@@ -134,13 +149,49 @@ public class UserDAOimpl implements UserDAO {
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-        finally {
-            try{
-                if(con != null){
+        } finally {
+            try {
+                if (con != null) {
                     con.close();
                 }
-            }catch (SQLException e){
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+
+    }
+
+
+    public User getByPhoneNumber(String phone_number) {
+        Connection con = null;
+        String sql = "SELECT * FROM restaurant.user WHERE phone_number = ?";
+        try {
+
+            con = DataSource.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, phone_number);
+            ResultSet resultSet = ps.executeQuery();
+            if (resultSet.first()) {
+                User user = new User();
+                user.setIdUser(resultSet.getInt(1));
+                user.setName(resultSet.getString(2));
+                user.setSurname(resultSet.getString(3));
+                user.setPhone_number(resultSet.getString(4));
+                user.setLogin(resultSet.getString(5));
+                user.setPassword(resultSet.getString(6));
+                user.setRole(resultSet.getString(7));
+                return user;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         }

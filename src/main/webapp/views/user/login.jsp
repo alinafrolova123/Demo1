@@ -10,7 +10,7 @@
                          style="background: url('${pageContext.request.contextPath}/static/img/reservation.png') left center no-repeat;">
                         <h3>Login</h3>
 
-                        <form class="search-form" action="/login" method="post">
+                        <form class="search-form" action="login" method="post">
                             <div class="form-group">
                                 <div class="input-group">
                                     <input type="text" class="form-control <c:out value="${not empty error ? 'is-invalid':''}"></c:out> " name="login" placeholder="Your login"

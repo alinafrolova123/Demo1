@@ -1,27 +1,27 @@
 package com.softserve.entities;
 
 public class User_Dish {
-    int idUser;
-    int idDish;
+    private Integer idUser;
+    private Integer idDish;
 
-    public User_Dish(int idUser, int idDish) {
+    public User_Dish(Integer idUser, Integer idDish) {
         this.idUser = idUser;
         this.idDish = idDish;
     }
 
-    public int getIdUser() {
+    public Integer getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(int idUser) {
+    public void setIdUser(Integer idUser) {
         this.idUser = idUser;
     }
 
-    public int getIdDish() {
+    public Integer getIdDish() {
         return idDish;
     }
 
-    public void setIdDish(int idDish) {
+    public void setIdDish(Integer idDish) {
         this.idDish = idDish;
     }
 }

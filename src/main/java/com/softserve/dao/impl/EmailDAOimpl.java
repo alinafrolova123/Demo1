@@ -1,5 +1,6 @@
 package com.softserve.dao.impl;
 
+import com.softserve.dao.EmailDAO;
 import com.softserve.db.DataSource;
 import com.softserve.entities.Email;
 
@@ -9,9 +10,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class EmailDAOimpl{
-
-    public static void add(Email email) {
+public class EmailDAOimpl implements EmailDAO {
+    @Override
+    public void add(Email email) {
         String sql = "INSERT INTO user_email(email) " +
                 "VALUES(?)";
         try {
@@ -26,7 +27,8 @@ public class EmailDAOimpl{
         }
     }
 
-    public static ArrayList<Email> getEmails() {
+    @Override
+    public ArrayList<Email> getEmails() {
         ArrayList<Email> emails = new ArrayList<>();
         String sql = "SELECT * FROM restaurant.user_email;";
         ResultSet resultSet;
@@ -47,7 +49,8 @@ public class EmailDAOimpl{
         return emails;
     }
 
-    public static boolean delete(int id) {
+    @Override
+    public boolean delete(int id) {
 
         String sql = "DELETE FROM restaurant.email WHERE idEmail = " + id;
         Connection con = null;

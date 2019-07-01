@@ -1,5 +1,6 @@
 package com.softserve.dao.impl;
 
+import com.softserve.dao.DishDAO;
 import com.softserve.db.DataSource;
 import com.softserve.entities.Dish;
 
@@ -10,9 +11,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DishDAOimpl {
-
-    public static boolean add(Dish dish) {
+public class DishDAOimpl implements DishDAO {
+    @Override
+    public boolean add(Dish dish) {
         Connection con = null;
         String sql = "INSERT INTO dishes (name, description, price, type)  " +
                 "VALUES(?,?,?,?)";
@@ -42,6 +43,7 @@ public class DishDAOimpl {
         return false;
     }
 
+    @Override
     public void edit(Dish dish) {
         String sql = "UPDATE restaurant.dishes SET name = ?, description = ?, price = ? where idDish = ?";
         Connection con = null;
@@ -69,8 +71,8 @@ public class DishDAOimpl {
         }
     }
 
-
-    public static boolean delete(int id) {
+    @Override
+    public boolean delete(int id) {
         String sql = "DELETE FROM restaurant.dishes WHERE idDish = " + id;
         Connection con = null;
         try {
@@ -85,7 +87,8 @@ public class DishDAOimpl {
         return false;
     }
 
-    public static List<Dish> getDishes() {
+    @Override
+    public List<Dish> getDishes() {
         List<Dish> dishes = new ArrayList<>();
         String sql = "SELECT * FROM restaurant.dishes WHERE type=1;";
         ResultSet resultSet;
@@ -117,7 +120,8 @@ public class DishDAOimpl {
         return dishes;
     }
 
-    public static List<Dish> getDrinks() {
+    @Override
+    public List<Dish> getDrinks() {
         List<Dish> drinks = new ArrayList<>();
         String sql = "SELECT * FROM restaurant.dishes WHERE type=0;";
         ResultSet resultSet;
@@ -149,8 +153,8 @@ public class DishDAOimpl {
         return drinks;
     }
 
-
-    public static List<Dish> getItems() {
+    @Override
+    public List<Dish> getItems() {
         List<Dish> dishes = new ArrayList<>();
         String sql = "SELECT * FROM restaurant.dishes;";
         ResultSet resultSet;
@@ -182,8 +186,8 @@ public class DishDAOimpl {
         return dishes;
     }
 
-
-    public static Dish getById(int idDish) {
+    @Override
+    public Dish getById(int idDish) {
         Connection con = null;
         String sql = "SELECT name, description, price, type FROM restaurant.dishes WHERE idDish = ?";
         try {

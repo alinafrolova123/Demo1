@@ -3,7 +3,8 @@ package com.softserve.entities;
 import java.util.Objects;
 
 public class User {
-    private int idUser;
+
+    private Integer idUser;
     private String name;
     private String surname;
     private String phone_number;
@@ -22,7 +23,7 @@ public class User {
         this.role = role;
     }
 
-    public User(int id_user, String name, String surname, String phone_number, String login, String password, String role) {
+    public User(Integer id_user, String name, String surname, String phone_number, String login, String password, String role) {
         this.idUser = id_user;
         this.name = name;
         this.surname = surname;
@@ -41,11 +42,19 @@ public class User {
         this.role = role;
     }
 
-    public int getIdUser() {
+    public User(String name, String surname, String phone_number, String login, String password) {
+        this.name = name;
+        this.surname = surname;
+        this.phone_number = phone_number;
+        this.login = login;
+        this.password = password;
+    }
+
+    public Integer getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(int idUser) {
+    public void setIdUser(Integer idUser) {
         this.idUser = idUser;
     }
 
@@ -90,10 +99,7 @@ public class User {
     }
 
     public boolean isAdmin() {
-        if (this.role.equals("admin")) {
-            return true;
-        }
-        return false;
+        return this.role.equals("admin");
     }
 
     @Override
@@ -114,7 +120,7 @@ public class User {
         if (this == o) return true;
         if (!(o instanceof User)) return false;
         User user = (User) o;
-        return idUser == user.idUser &&
+        return Objects.equals(idUser, user.idUser) &&
                 Objects.equals(name, user.name) &&
                 Objects.equals(surname, user.surname) &&
                 Objects.equals(phone_number, user.phone_number) &&

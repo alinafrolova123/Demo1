@@ -1,5 +1,6 @@
 package com.softserve.dao.impl;
 
+import com.softserve.dao.User_DishDAO;
 import com.softserve.db.DataSource;
 import com.softserve.entities.Dish;
 
@@ -9,8 +10,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class User_DishDAOimpl {
-    public static void add(int idUser, int idDish) {
+public class User_DishDAOimpl implements User_DishDAO {
+
+    @Override
+    public void add(int idUser, int idDish) {
         Connection con = null;
         String sql = "INSERT INTO restaurant.user_dish (idUser,idDish)  " +
                 "VALUES( " + idUser + "," + idDish + ")";
@@ -30,10 +33,20 @@ public class User_DishDAOimpl {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+            finally {
+                try{
+                    if(con != null){
+                        con.close();
+                    }
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
-    public static boolean delete(int idDish) {
+    @Override
+    public boolean delete(int idDish) {
         Connection con = null;
         String sql = "DELETE FROM restaurant.user_dish WHERE idDish = " + idDish;
         try {
@@ -45,10 +58,20 @@ public class User_DishDAOimpl {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        finally {
+            try{
+                if(con != null){
+                    con.close();
+                }
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
         return false;
     }
 
-    public static int getBill() {
+    @Override
+    public int getBill() {
         ArrayList<Integer> price = new ArrayList<Integer>();
         int bill = 0;
         Connection con = null;
@@ -65,10 +88,20 @@ public class User_DishDAOimpl {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        finally {
+            try{
+                if(con != null){
+                    con.close();
+                }
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
         return bill;
     }
 
-    public static void deleteAll() {
+    @Override
+    public void deleteAll() {
         Connection con = null;
         String sql = "TRUNCATE TABLE restaurant.user_dish;";
         try {

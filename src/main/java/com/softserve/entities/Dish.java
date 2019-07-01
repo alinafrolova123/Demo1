@@ -3,17 +3,16 @@ package com.softserve.entities;
 import java.util.Objects;
 
 public class Dish {
-    private int idDish;
+    private Integer idDish;
     private String name;
     private String description;
     private String price;
-    private int type;
-
+    private Integer type;
 
     public Dish() {
     }
 
-    public Dish(int idDish, String name, String description, String price, int type) {
+    public Dish(Integer idDish, String name, String description, String price, Integer type) {
         this.idDish = idDish;
         this.name = name;
         this.description = description;
@@ -21,14 +20,14 @@ public class Dish {
         this.type = type;
     }
 
-    public Dish(String name, String description, String price, int type) {
+    public Dish(String name, String description, String price, Integer type) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.type = type;
     }
 
-    public int getIdDish() {
+    public Integer getIdDish() {
         return idDish;
     }
 
@@ -84,11 +83,11 @@ public class Dish {
         if (this == o) return true;
         if (!(o instanceof Dish)) return false;
         Dish dish = (Dish) o;
-        return idDish == dish.idDish &&
-                type == dish.type &&
+        return Objects.equals(idDish, dish.idDish) &&
                 Objects.equals(name, dish.name) &&
                 Objects.equals(description, dish.description) &&
-                Objects.equals(price, dish.price);
+                Objects.equals(price, dish.price) &&
+                Objects.equals(type, dish.type);
     }
 
     @Override

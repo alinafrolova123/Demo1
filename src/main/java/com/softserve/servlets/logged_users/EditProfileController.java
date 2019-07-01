@@ -33,7 +33,7 @@ public class EditProfileController extends HttpServlet {
         AuthManager authManager = (AuthManager) request.getAttribute("Auth");
 
         User user = authManager.getUser();
-
+        user.setIdUser(Integer.parseInt(request.getParameter("idUser")));
         user.setName(request.getParameter("name"));
         user.setSurname(request.getParameter("surname"));
         user.setPhone_number(request.getParameter("phone_number"));

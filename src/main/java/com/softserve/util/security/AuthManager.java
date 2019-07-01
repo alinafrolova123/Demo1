@@ -1,5 +1,7 @@
 package com.softserve.util.security;
 
+import com.softserve.dao.UserDAO;
+import com.softserve.dao.impl.UserDAOimpl;
 import com.softserve.entities.Dish;
 import com.softserve.entities.User;
 import com.softserve.services.UserService;
@@ -48,6 +50,15 @@ public class AuthManager {
         return false;
     }
 
+    public boolean tryRegister(String phone_number, String login) {
+        UserDAO userDAO = new UserDAOimpl();
+            if (userDAO.getByPhoneNumber(phone_number)!= null || phone_number.isEmpty()||userDAO.getByLogin(login)!= null||login.isEmpty()) {
+                return false;
+            }
+            return true;
+
+    }
+
 
     public void login(User user) {
         if (user == null) {
@@ -58,7 +69,6 @@ public class AuthManager {
         List <Dish> items = new ArrayList<>();
         int bill = 0;
         this.session.setAttribute("bin_dishes", items);
-
 
     }
 

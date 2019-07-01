@@ -1,7 +1,7 @@
 package com.softserve.entities;
 
 public class Email {
-    private int id;
+    private Integer id;
     private String email;
 
     public Email() {

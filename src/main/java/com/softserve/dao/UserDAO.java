@@ -11,4 +11,5 @@ public interface UserDAO {
     boolean delete(int id);
 
     User getByLogin(String login);
+    User getByPhoneNumber(String phone_number);
 }

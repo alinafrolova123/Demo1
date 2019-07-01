@@ -12,7 +12,6 @@ import java.io.IOException;
 @WebServlet("/admin/edit/dish")
 public class EditDishController extends HttpServlet {
 
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         getServletContext().getRequestDispatcher("/views/admin/dishes.jsp").forward(req, resp);

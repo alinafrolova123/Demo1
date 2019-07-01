@@ -3079,6 +3079,11 @@ ul ul a {
     color: #f76f6f;
 }
 
+.registration-invalid-feedback{
+    font-size: 15px;
+    color: #f76f6f;
+}
+
 #main {
     background-color: #f2f2f2;
     padding: 20px;

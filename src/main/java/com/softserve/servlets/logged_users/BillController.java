@@ -1,8 +1,9 @@
 package com.softserve.servlets.logged_users;
 
+import com.softserve.dao.User_DishDAO;
 import com.softserve.dao.impl.User_DishDAOimpl;
 import com.softserve.entities.Dish;
-import com.softserve.entities.User_Dish;
+import com.softserve.factory.DAOFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +17,12 @@ import java.util.List;
 
 @WebServlet("/user/bill")
 public class BillController extends HttpServlet {
+
+    User_DishDAO user_dishDAO;
+    @Override
+    public void init() throws ServletException {
+        user_dishDAO = DAOFactory.getUser_dishDAO();
+    }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/views/logged_users/buy.jsp").forward(req, resp);
@@ -27,7 +34,7 @@ public class BillController extends HttpServlet {
         HttpSession session = req.getSession();
         List<Dish> items = (List<Dish>) session.getAttribute("bin_dishes");
         items.clear();
-        User_DishDAOimpl.deleteAll();
+        user_dishDAO.deleteAll();
         resp.sendRedirect("/user/buy");
     }
 }

@@ -7,4 +7,5 @@ public interface UserService {
     void edit(User user);
     void delete(int id);
     User getByLogin(String login);
+
 }

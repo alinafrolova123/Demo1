@@ -31,7 +31,7 @@
                             <div class="tab-pane fade" id="contact">
                                 <p></p>
                                 <form role="form" method="post" action="/user/myprofile">
-                                    <input type="hidden" value="${Auth.user.idUser}" name="id" />
+                                    <input type="hidden" value="${Auth.user.idUser}" name="idUser" />
                                     <div class="form-group">
                                         <label>Your Name:</label>
                                         <input name="name" class="form-control rounded" value="${Auth.user.name}" />
@@ -48,6 +48,7 @@
                                         <label>Your Login</label>
                                         <input name="login" class="form-control rounded" value="${Auth.user.login}" />
                                     </div>
+                                    <input type="hidden" name="password" value="${Auth.user.password}" />
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-success" >Update</button>
                                     </div>
